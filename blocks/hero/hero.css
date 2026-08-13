@@ -7,13 +7,37 @@
   position: relative;
   padding: 40px 24px;
   min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgb(0 0 0 / 40%);
+}
+
+.hero > div {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1,
+.hero p {
+  color: var(--background-color);
+  text-shadow: 0 1px 4px rgb(0 0 0 / 50%);
 }
 
 .hero h1 {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  color: var(--background-color);
 }
 
 .hero picture {
