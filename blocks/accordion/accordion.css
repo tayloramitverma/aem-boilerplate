@@ -1,4 +1,19 @@
-.accordion-item { border-bottom: 1px solid #ddd; }
-.accordion-item-label { padding: 12px 0; cursor: pointer; font-weight: 600; }
-.accordion-item-body { display: none; padding: 0 0 12px; color: #555; }
-.accordion-item.is-open .accordion-item-body { display: block; }
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-item-label {
+  padding: 12px 0;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.accordion-item-body {
+  display: none;
+  padding: 0 0 12px;
+  color: #555;
+}
+
+.accordion-item.is-open .accordion-item-body {
+  display: block;
+}
