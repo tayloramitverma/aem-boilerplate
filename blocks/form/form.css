@@ -1,38 +1,64 @@
 .form form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
   max-width: 480px;
 }
 
 .form .form-field {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .form label {
   font-weight: 600;
+  font-size: var(--body-font-size-s);
 }
 
 .form input {
-  padding: 8px 12px;
+  padding: 10px 14px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: var(--link-color);
+  box-shadow: 0 0 0 3px rgb(59 99 251 / 15%);
+}
+
+.form input.is-invalid {
+  border-color: #d93025;
+}
+
+.form .form-error {
+  min-height: 1.2em;
+  color: #d93025;
+  font-size: var(--body-font-size-xs);
 }
 
 .form button[type='submit'] {
   align-self: flex-start;
   padding: 10px 24px;
   border: none;
-  border-radius: 4px;
-  background-color: #000;
-  color: #fff;
+  border-radius: 6px;
+  background-color: var(--text-color);
+  color: var(--background-color);
   font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.form button[type='submit']:hover {
-  background-color: #333;
+.form button[type='submit']:hover,
+.form button[type='submit']:focus-visible {
+  background-color: var(--dark-color);
+}
+
+.form .form-success {
+  font-size: var(--body-font-size-s);
+  color: var(--text-color);
 }

@@ -1,0 +1,38 @@
+.cta {
+  background-color: var(--text-color);
+  color: var(--background-color);
+  text-align: center;
+  padding: 56px 24px;
+}
+
+.cta .cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta .cta-content h1,
+.cta .cta-content h2,
+.cta .cta-content h3 {
+  color: var(--background-color);
+  margin-top: 0;
+}
+
+.cta .cta-content .button-wrapper {
+  margin-top: 24px;
+}
+
+.cta .cta-content .button.primary {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-color: var(--background-color);
+}
+
+.cta .cta-content .button.primary:hover {
+  background-color: var(--light-color);
+}
+
+@media (width >= 600px) {
+  .cta {
+    padding: 72px 32px;
+  }
+}

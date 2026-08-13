@@ -8,6 +8,8 @@ export default function decorate(block) {
   });
 
   const form = document.createElement('form');
+  form.noValidate = true;
+  const validators = [];
 
   fields.forEach(({ label, type }) => {
     const id = label.toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -25,7 +27,27 @@ export default function decorate(block) {
     input.name = id;
     input.required = true;
 
-    fieldWrapper.append(fieldLabel, input);
+    const error = document.createElement('span');
+    error.className = 'form-error';
+    error.id = `${id}-error`;
+    input.setAttribute('aria-describedby', error.id);
+
+    const validate = () => {
+      let message = '';
+      if (input.validity.valueMissing) message = `${label} is required.`;
+      else if (input.validity.typeMismatch && type === 'email') message = 'Enter a valid email address.';
+      error.textContent = message;
+      input.classList.toggle('is-invalid', !!message);
+      return !message;
+    };
+    validators.push({ input, validate });
+
+    input.addEventListener('blur', validate);
+    input.addEventListener('input', () => {
+      if (input.classList.contains('is-invalid')) validate();
+    });
+
+    fieldWrapper.append(fieldLabel, input, error);
     form.append(fieldWrapper);
   });
 
@@ -36,7 +58,13 @@ export default function decorate(block) {
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    block.innerHTML = '<p>Thank you! Your submission has been received.</p>';
+    const results = validators.map(({ validate }) => validate());
+    if (!results.every(Boolean)) {
+      const firstInvalid = validators.find((_, index) => !results[index]);
+      firstInvalid?.input.focus();
+      return;
+    }
+    block.innerHTML = '<p class="form-success">Thank you! Your submission has been received.</p>';
   });
 
   block.textContent = '';
